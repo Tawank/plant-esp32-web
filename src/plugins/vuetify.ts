@@ -9,4 +9,12 @@ export default new Vuetify({
     locales: { pl },
     current: 'pl',
   },
+  theme: {
+    themes: {
+      light: {
+        primary: '#037F8C',
+        accent: '#F28241',
+      },
+    },
+  },
 });

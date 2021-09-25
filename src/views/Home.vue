@@ -1,16 +1,16 @@
 <template>
-  <hello-world />
+  <Sensors />
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-import HelloWorld from '../components/HelloWorld.vue';
+import Sensors from '../components/Sensors.vue';
 
 export default Vue.extend({
   name: 'Home',
 
   components: {
-    HelloWorld,
+    Sensors,
   },
 });
 </script>
