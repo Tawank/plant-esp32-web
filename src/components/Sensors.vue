@@ -69,6 +69,7 @@ export default Vue.extend({
       heatIndex: null,
       humidity: null,
       soil_1: null,
+      soil_2: null,
       temperature: null,
       updated_at: null,
     },
