@@ -1,69 +1,55 @@
 <template>
   <v-container>
     <v-row>
-      <v-col cols="12">
-        <v-card
-          class="mx-auto"
-          max-width="344"
-        >
-          <v-img
-            src="/img/room.jpg"
-            height="200px"
-          ></v-img>
-          <v-card-title>
-            Pokój
-          </v-card-title>
-          <v-card-text>
-            <v-list dense class="transparent">
-              <v-list-item>
-                <v-list-item-icon>
-                  <v-icon>mdi-thermometer</v-icon>
-                </v-list-item-icon>
-                <v-list-item-subtitle>
-                  <span style="font-size: 1.5em;">
-                    {{ roundToTwo(sensors.temperature) || '?' }} °C
-                  </span>
-                </v-list-item-subtitle>
-              </v-list-item>
-              <v-list-item>
-                <v-list-item-icon>
-                  <v-icon>mdi-water-percent</v-icon>
-                </v-list-item-icon>
-                <v-list-item-subtitle>
-                  <span style="font-size: 1.5em;">
-                    {{ roundToTwo(sensors.humidity) || '?' }} %
-                  </span>
-                </v-list-item-subtitle>
-              </v-list-item>
-            </v-list>
-          </v-card-text>
-        </v-card>
+      <v-col
+        class="pb-0"
+        cols="12"
+      >
+        <div class="text-center">{{ new Date(sensors.updated_at).toLocaleString() }}</div>
       </v-col>
       <v-col cols="12">
-        <v-card
-          class="mx-auto"
-          max-width="344"
-        >
-          <v-img
-            src="https://zielony-parapet.pl/7256-thickbox_default/philodendron-imperial-red.jpg"
-            height="200px"
-          ></v-img>
-          <v-card-title>
-            Imperial Red
-          </v-card-title>
-          <v-card-text>
-            <v-list dense class="transparent">
-              <v-list-item dense>
-                <v-list-item-icon>
-                  <v-icon>mdi-water</v-icon>
-                </v-list-item-icon>
-                <v-list-item-subtitle>
-                  <span style="font-size: 1.5em;">{{sensors.soil_1 || '?'}} %</span>
-                </v-list-item-subtitle>
-              </v-list-item>
-            </v-list>
-          </v-card-text>
-        </v-card>
+        <sensors-card
+          imageSrc="/img/room.jpg"
+          title="Pokój"
+          :sensorsData="[
+            {
+              icon: 'mdi-thermometer',
+              data: roundToTwo(sensors.temperature),
+              unit: '°C'
+            },
+            {
+              icon: 'mdi-water-percent',
+              data: roundToTwo(sensors.humidity),
+              unit: '%'
+            }
+          ]"
+        />
+      </v-col>
+      <v-col cols="12">
+        <sensors-card
+          imageSrc="https://zielony-parapet.pl/7256-thickbox_default/philodendron-imperial-red.jpg"
+          title="Imperial Red"
+          :sensorsData="[
+            {
+              icon: 'mdi-water',
+              data: sensors.soil_1,
+              unit: '%'
+            }
+          ]"
+        />
+      </v-col>
+      <v-col cols="12">
+        <sensors-card
+          imageSrc="https://zielony-parapet.pl/17780-thickbox_default/syngonium-podophyllum-albo-variegata-zroslicha.jpg"
+          title="Syngonium"
+          :sensorsData="[
+            {
+              icon: 'mdi-water',
+              data: sensors.soil_2,
+              unit: '%'
+            }
+          ]"
+        />
       </v-col>
     </v-row>
   </v-container>
@@ -73,16 +59,18 @@
 import Vue from 'vue';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/database';
+import SensorsCard from './SensorsCard.vue';
 
 export default Vue.extend({
+  components: { SensorsCard },
   name: 'Sensors',
-
   data: () => ({
     sensors: {
       heatIndex: null,
       humidity: null,
       soil_1: null,
       temperature: null,
+      updated_at: null,
     },
   }),
   created() {
