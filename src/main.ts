@@ -5,13 +5,13 @@ import router from './router';
 import vuetify from './plugins/vuetify';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyAFJH6HgJmgPD8CWNt2s3qUYZpOeNvfe0k',
-  authDomain: 'plant-esp32.firebaseapp.com',
-  databaseURL: 'https://plant-esp32-default-rtdb.europe-west1.firebasedatabase.app',
-  projectId: 'plant-esp32',
-  storageBucket: 'plant-esp32.appspot.com',
-  messagingSenderId: '392703252195',
-  appId: '1:392703252195:web:627345c229517eb1f7d7d6',
+  apiKey: 'AIzaSyAMZ4nOp9a75nYV4ZsxpBPAF0bSzDRDMII',
+  authDomain: 'kwiatkometr.firebaseapp.com',
+  databaseURL: 'https://kwiatkometr-default-rtdb.europe-west1.firebasedatabase.app',
+  projectId: 'kwiatkometr',
+  storageBucket: 'kwiatkometr.appspot.com',
+  messagingSenderId: '514991569271',
+  appId: '1:514991569271:web:86059b948e6b7341e88972',
 };
 
 Vue.config.productionTip = false;
